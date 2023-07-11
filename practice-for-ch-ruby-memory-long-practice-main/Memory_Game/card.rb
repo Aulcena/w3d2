@@ -1,8 +1,9 @@
+require_relative "board"
 class Card 
-    attr_reader :face_up
+    attr_reader :face_up, :face_val
 
-    def initialize
-        @card = ("a".."z").to_a.sample
+    def initialize(val)
+        @face_val = val
         @face_up = false  # card is faced down
     end 
 
@@ -12,17 +13,20 @@ class Card
 
     def reveal?
 
-        puts @card
+        # puts @card
 
         @face_up = true
         
-    end
+    end 
 
-    def pairs
+    def ==(other_card)
+        @face_val == other_card.face_val
 
-       
+        # if both cards are faced up and have the same val. return true
 
-    end
+    end 
+
+
 
 
 

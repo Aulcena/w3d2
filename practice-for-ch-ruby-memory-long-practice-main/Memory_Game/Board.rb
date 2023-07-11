@@ -28,32 +28,47 @@ class Board
 
     end
 
+    def pairs    
+        new_arr = []
+
+
+        @grid.each_with_index do |rows, i|
+
+            rows.each_with_index do |el, j|
+                val = ("a".."z").to_a.sample
+                card_1 = Card.new(val)
+                card_2 = Card.new(val)
+                new_arr << card_1
+                new_arr << card_2
+
+            end 
+
+        end 
+
+        return new_arr
+    end 
+
     def populate
+        shuffled = pairs.shuffle
+                    
+        z = 0 
 
-        i = 0 
+        while z < shuffled.length 
 
-            while i <= @size / 2  
 
-            val = ("a".."z").to_a.sample
-            card_1 = Card.new(val)
-            card_2 = card_1
-            
-            rand_row = rand(0...@grid.length)
-            rand_col = rand(0...@grid.length)
-            pos = rand_row, rand_col
+            @grid.each_with_index do |rows, i|
+                rows.each_with_index do |el, j|
+                    @grid[i][j] << shuffled[z]
+                end 
+            end 
 
-            self[pos] = card_1.face_val
+            z += 1
 
-            rand_row = rand(0...@grid.length)
-            rand_col = rand(0...@grid.length)
-            pos = rand_row, rand_col
+        end 
 
-            self[pos] = card_2.face_val
 
-            i += 1
 
-        end
-        
+
     end 
 
 
